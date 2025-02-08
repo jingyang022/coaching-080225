@@ -1,12 +1,12 @@
 resource "aws_acm_certificate" "certificate" {
-  domain_name       = "api.yourdomain.com"  # Our custom domain
+  domain_name       = "api.yourdomain.com" # Our custom domain
   validation_method = "DNS"
 }
 
 resource "aws_route53_record" "www" {
   name    = aws_acm_certificate.certificate.domain_validation_options[0].resource_record_name
   type    = aws_acm_certificate.certificate.domain_validation_options[0].resource_record_type
-  zone_id = "Z00541411T1NGPV97B5C0"  # Our Route 53 hosted zone ID
+  zone_id = "Z00541411T1NGPV97B5C0" # Our Route 53 hosted zone ID
   records = [aws_acm_certificate.certificate.domain_validation_options[0].resource_record_value]
   ttl     = 60
 }
@@ -35,11 +35,11 @@ resource "aws_api_gateway_deployment" "deployment" {
 }
 
 resource "aws_api_gateway_domain_name" "shortener" {
-  domain_name = "api.yourdomain.com"  # Our custom domain
+  domain_name     = "api.yourdomain.com" # Our custom domain
   certificate_arn = aws_acm_certificate_validation.cert_validation.certificate_arn
 
-endpoint configuration {
-  types = ["REGIONAL"]
+  endpoint "configuration" {
+    types = ["REGIONAL"]
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_api_gateway_base_path_mapping" "shorterner" {
 }
 
 resource "aws_route53_record" "custom_domain_record" {
-  zone_id = "Z00541411T1NGPV97B5C0"  # Our Route 53 hosted zone ID
+  zone_id = "Z00541411T1NGPV97B5C0" # Our Route 53 hosted zone ID
   name    = aws_api_gateway_domain_name.custom_domain.domain_name
   type    = "A"
 
