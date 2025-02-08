@@ -1,8 +1,8 @@
 resource "aws_dynamodb_table" "url-dynamodb-table" {
-    name           = "url-table"
-    billing_mode   = "PAY_PER_REQUEST"
-    hash_key       = "short_id"
-    #range_key      = "Genre"
+  name         = "url-table"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "short_id"
+  #range_key      = "Genre"
 
   attribute {
     name = "short_id"

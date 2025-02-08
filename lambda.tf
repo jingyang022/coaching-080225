@@ -15,11 +15,11 @@ resource "aws_lambda_function" "http_api_lambda" {
 
   environment {
     variables = {
-      APP_URL = "" # todo: fill with apporpriate value
-      MIN_CHAR = 12
-      MAX_CHAR = 16
+      APP_URL    = "" # todo: fill with apporpriate value
+      MIN_CHAR   = 12
+      MAX_CHAR   = 16
       REGION_AWS = "ap-southeast-1"
-      DB_NAME = aws_dynamodb_table.url-dynamodb-table.name
+      DB_NAME    = aws_dynamodb_table.url-dynamodb-table.name
     }
   }
 }
@@ -32,7 +32,7 @@ resource "aws_cloudwatch_log_group" "function_log_group" {
   retention_in_days = 7
   lifecycle {
     create_before_destroy = true
-    prevent_destroy = false
+    prevent_destroy       = false
   }
 }
 
