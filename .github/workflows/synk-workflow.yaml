@@ -1,5 +1,10 @@
 name: Workflow for Snyk Infrastructure as Code
-on: push
+on: 
+  push:
+    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+
 jobs:
   security:
     runs-on: ubuntu-latest
@@ -9,3 +14,5 @@ jobs:
         uses: snyk/actions/iac@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
