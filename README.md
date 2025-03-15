@@ -2,9 +2,9 @@
 
 <p>Required Components:
 
-1. DynamoDB to store the short ids (Done!)
+1. DynamoDB to store the short ids
 
-2. Created Lambda execution role to access DynamoDB (Done!)
+2. Created Lambda execution role to access DynamoDB
 
 3. 1x Lambda (for POST /newurl)
 
@@ -17,3 +17,5 @@
 7. X-ray for tracing
 
 8. Cloudwatch Alarms + SNS for alerts (Don't have to subscribe as this is for learning purposes only)
+
+9. Implemented SYNK scanning workflow to scan terraform files.
