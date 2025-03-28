@@ -6,7 +6,7 @@ on:
   #   branches: [ main ]
 
 jobs:
-  code check:
+  code_check:
     runs-on: ubuntu-latest
     steps:
       - uses: terraform-linters/setup-tflint@v3
