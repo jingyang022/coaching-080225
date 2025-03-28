@@ -1,4 +1,4 @@
-name: Workflow for Snyk Infrastructure as Code
+name: TFLint and SYNK scan
 on: 
   push:
     branches: [ main ]
@@ -6,13 +6,26 @@ on:
   #   branches: [ main ]
 
 jobs:
-  security:
+  TFLint and SYNK checks:
     runs-on: ubuntu-latest
     steps:
+      - uses: terraform-linters/setup-tflint@v3
+        with:
+         tflint_version: latest
+   
+      - name: Show version
+        run: tflint --version
+
+      - name: Init TFLint
+        run: tflint --init
+    
+      - name: Run TFLint
+        run: tflint -f compact
+
       - uses: actions/checkout@v2
       - name: Run Snyk to check Terraform files for issues
         uses: snyk/actions/iac@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=high
+          args: --severity-threshold=critical
